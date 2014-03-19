@@ -1,4 +1,4 @@
-		<script src="<?php echo $this->config->base_url();?>assets/js/jquery.min.js"></script>
+
 		<script type="text/javascript">
 			$(document).ready(function() {
 

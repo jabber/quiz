@@ -20,6 +20,7 @@
 				margin-top: 45px;
 			}
 		</style>
+		<script src="<?php echo $this->config->base_url();?>assets/js/jquery.min.js"></script>
 	</head>
 	<body>
 		<div class="navbar navbar-default navbar-fixed-top">

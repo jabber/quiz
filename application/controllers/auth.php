@@ -816,10 +816,14 @@ class Auth extends CI_Controller {
 		$this->data['title'] = 'List Questions';
 		if(!$listdata)
 		{
-			$this->question_model->list_questions();
+			$result = $this->question_model->list_questions();
+			$this->data['list'] = json_encode($result);
+			// print_r('<pre>');
+			// print_r($result);
 		}
 		else
 		{
+			$this->data['list'] = json_encode($listdata);
 			// print_r('<pre>');
 			// print_r($listdata);
 		}

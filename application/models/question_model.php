@@ -53,6 +53,7 @@
 		public function list_questions()
 		{
 			$query = $this->db->get('question_lib');
+			return $query->result();
 		}
 
 		public function search_question($keyarray=null)
