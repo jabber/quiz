@@ -15,6 +15,11 @@
 		<![endif]-->
 		<link rel="stylesheet" type="text/css" href="<?php echo $this->config->base_url();?>assets/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo $this->config->base_url();?>assets/css/font-awesome.min.css">
+		<style>
+			body {
+				margin-top: 45px;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="navbar navbar-default navbar-fixed-top">
