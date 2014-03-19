@@ -1,0 +1,4 @@
+application/config/config.php
+application/config/poi_config.php
+application/config/database.php
+.htaccess
