@@ -14,6 +14,7 @@ class Auth extends CI_Controller {
 		$this->load->library('mongo_db') :
 
 		$this->load->database();
+		$this->load->model('question_model');
 
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
@@ -753,4 +754,94 @@ class Auth extends CI_Controller {
 		if (!$render) return $view_html;
 	}
 
+	function add_question()
+	{
+		$this->data['title'] = 'Add Question';
+
+		$this->form_validation->set_rules('question','Question','required');
+		$this->form_validation->set_rules('answer_A','Answer_A','required');
+		$this->form_validation->set_rules('answer_B','Answer_B','required');
+		$this->form_validation->set_rules('answer_C','Answer_C','required');
+		$this->form_validation->set_rules('answer_D','Answer_D','required');
+		$this->form_validation->set_rules('correct_answer','Correct_answer','required');
+
+		if($this->form_validation->run() == TRUE)
+		{
+			$question_data = array(
+				'question' => $this->input->post('question'),
+				'answer_A' => $this->input->post('answer_A'),
+				'answer_B' => $this->input->post('answer_B'),
+				'answer_C' => $this->input->post('answer_C'),
+				'answer_D' => $this->input->post('answer_D'),
+				'correct_answer' => $this->input->post('correct_answer')
+				);
+			if( !$this->db->table_exists('question_lib') )
+			{
+				$this->question_model->create_question_lib();
+			}
+			$this->question_model->add_question($question_data);
+		}
+		$this->_render_page('auth/add_question',$this->data);
+	}
+
+	function update_question()
+	{
+		$this->data['title'] = 'Update Question';
+
+		$this->form_validation->set_rules('question','Question','required');
+		$this->form_validation->set_rules('answer_A','Answer_A','required');
+		$this->form_validation->set_rules('answer_B','Answer_B','required');
+		$this->form_validation->set_rules('answer_C','Answer_C','required');
+		$this->form_validation->set_rules('answer_D','Answer_D','required');
+		$this->form_validation->set_rules('correct_answer','Correct_answer','required');
+
+		if($this->form_validation->run() == TRUE)
+		{
+			$question_data = array(
+				'question' => $this->input->post('question'),
+				'answer_A' => $this->input->post('answer_A'),
+				'answer_B' => $this->input->post('answer_B'),
+				'answer_C' => $this->input->post('answer_C'),
+				'answer_D' => $this->input->post('answer_D'),
+				'correct_answer' => $this->input->post('correct_answer')
+				);
+			$qid = $this->input->post('qid');
+			$this->question_model->update_question($question_data,$qid);
+		}
+		$this->_render_page('auth/update_question',$this->data);
+	}
+
+	function list_questions($listdata=null)
+	{
+		$this->data['title'] = 'List Questions';
+		if(!$listdata)
+		{
+			$this->question_model->list_questions();
+		}
+		else
+		{
+			// print_r('<pre>');
+			// print_r($listdata);
+		}
+		$this->_render_page('auth/list_questions',$this->data);
+	}
+
+	function search_question()
+	{
+		$this->data['title'] = 'Search Questions';
+
+		$this->form_validation->set_rules('keywords','Keywords','required');
+		if($this->form_validation->run() == TRUE)
+		{
+			$keywords = $this->input->post('keywords');
+			$keyarray = explode(" ",$keywords);
+			$result = $this->question_model->search_question($keyarray);
+
+			$this->list_questions($result);
+		}
+		else
+		{
+			$this->_render_page('auth/search_question',$this->data);
+		}
+	}
 }
