@@ -25,29 +25,13 @@
 
 		public function add_question($question_data)
 		{
-			$question = array(
-				'question' => $question_data['question'],
-				'answer_A' => $question_data['answer_A'],
-				'answer_B' => $question_data['answer_B'],
-				'answer_C' => $question_data['answer_C'],
-				'answer_D' => $question_data['answer_D'],
-				'correct_answer' => $question_data['correct_answer']
-			);
-			$this->db->insert('question_lib',$question);
+			$this->db->insert('question_lib',$question_data);
 		}
 
 		public function update_question($question_data,$qid)
 		{
-			$question = array(
-				'question' => $question_data['question'],
-				'answer_A' => $question_data['answer_A'],
-				'answer_B' => $question_data['answer_B'],
-				'answer_C' => $question_data['answer_C'],
-				'answer_D' => $question_data['answer_D'],
-				'correct_answer' => $question_data['correct_answer']
-			);
 			$this->db->where('qid',$qid);
-			$this->db->update('question_lib',$question);
+			$this->db->update('question_lib',$question_data);
 		}
 
 		public function list_questions()

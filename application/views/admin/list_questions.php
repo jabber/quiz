@@ -19,10 +19,10 @@
 				ans_c = '<tr><td>'+listData[i]['answer_C']+'</td></tr>';
 				ans_d = '<tr><td>'+listData[i]['answer_D']+'</td></tr>';
 				corr_ans = '<tr><td>'+listData[i]['correct_answer']+'</td></tr><tr><td>';
-				delete_btn = '<input type = "button" value = "delete" class = "delete_button" name = "delete_'+qid+'">';
+				//delete_btn = '<input type = "button" value = "delete" class = "delete_button" name = "delete_'+qid+'">';
 				edit_btn = '<input type ="button" value = "edit" class = "edit_button" name = "edit_'+qid+'"></td></tr>';
 				blank = '<tr><td>&nbsp;</td></tr>';
-				$('#q_table').append(question+ans_a+ans_b+ans_c+ans_d+corr_ans+delete_btn+edit_btn+blank);
+				$('#q_table').append(question+ans_a+ans_b+ans_c+ans_d+corr_ans+edit_btn+blank);
 			}
 
 			$('.edit_button').on('click',function(event){
