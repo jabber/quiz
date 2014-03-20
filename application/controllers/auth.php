@@ -784,31 +784,53 @@ class Auth extends CI_Controller {
 		$this->_render_page('auth/add_question',$this->data);
 	}
 
-	function update_question()
+	function update_question($qid = null)
 	{
 		$this->data['title'] = 'Update Question';
+		$this->data['qid'] = $this->input->post('qid');
+		$qid = $this->data['qid'];
 
-		$this->form_validation->set_rules('question','Question','required');
-		$this->form_validation->set_rules('answer_A','Answer_A','required');
-		$this->form_validation->set_rules('answer_B','Answer_B','required');
-		$this->form_validation->set_rules('answer_C','Answer_C','required');
-		$this->form_validation->set_rules('answer_D','Answer_D','required');
-		$this->form_validation->set_rules('correct_answer','Correct_answer','required');
-
-		if($this->form_validation->run() == TRUE)
-		{
-			$question_data = array(
-				'question' => $this->input->post('question'),
-				'answer_A' => $this->input->post('answer_A'),
-				'answer_B' => $this->input->post('answer_B'),
-				'answer_C' => $this->input->post('answer_C'),
-				'answer_D' => $this->input->post('answer_D'),
-				'correct_answer' => $this->input->post('correct_answer')
-				);
-			$qid = $this->input->post('qid');
-			$this->question_model->update_question($question_data,$qid);
+		//读出一个qid问题下的数据
+		$this->db->where('qid',$qid);
+		$this->db->from('question_lib');
+		$result = $this->db->get()->result();
+		// print_r('<pre>');
+		// die(print_r($result[0]));
+		$fieldArray = array();
+		foreach ($result[0] as $key => $value) {
+			$fieldArray[$key] = $value;
 		}
-		$this->_render_page('auth/update_question',$this->data);
+		$this->data['question'] = $fieldArray['question'];
+		$this->data['answer_A'] = $fieldArray['answer_A'];
+		$this->data['answer_B'] = $fieldArray['answer_B'];
+		$this->data['answer_C'] = $fieldArray['answer_C'];
+		$this->data['answer_D'] = $fieldArray['answer_D'];
+		$this->data['correct_answer'] = $fieldArray['correct_answer'];
+
+		if($qid)
+		{
+			$this->form_validation->set_rules('question','Question','required');
+			$this->form_validation->set_rules('answer_A','Answer_A','required');
+			$this->form_validation->set_rules('answer_B','Answer_B','required');
+			$this->form_validation->set_rules('answer_C','Answer_C','required');
+			$this->form_validation->set_rules('answer_D','Answer_D','required');
+			$this->form_validation->set_rules('correct_answer','Correct_answer','required');
+
+			if($this->form_validation->run() == TRUE)
+			{
+				$question_data = array(
+					'question' => $this->input->post('question'),
+					'answer_A' => $this->input->post('answer_A'),
+					'answer_B' => $this->input->post('answer_B'),
+					'answer_C' => $this->input->post('answer_C'),
+					'answer_D' => $this->input->post('answer_D'),
+					'correct_answer' => $this->input->post('correct_answer')
+					);
+				$this->question_model->update_question($question_data,$qid);
+			}
+			//提示更新成功并跳转到管理页面
+		}
+			$this->_render_page('auth/update_question',$this->data);
 	}
 
 	function list_questions($listdata=null)

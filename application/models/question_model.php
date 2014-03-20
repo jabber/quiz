@@ -73,5 +73,14 @@
 			// print_r('<pre>');
 			// var_dump($result);
 		}
+
+		// public function delete_question($qid)
+		// {
+		// 	if(!$qid)
+		// 	{
+		// 		$this->db->where('qid',$qid);
+		// 		$this->db->delete('question_lib');		//如果做完题后，已经在用户做题档案里生成数据了，再删除岂不是出问题，是不是考虑不要删除功能
+		// 	}
+		// }
 	}
 ?>
