@@ -58,6 +58,20 @@
 			// var_dump($result);
 		}
 
+		public function search_question_withqid($keyarray=null)
+		{
+			//会在题干和答案中搜索所有关键词，效率?
+			$this->db->from('question_lib');
+			foreach($keyarray as $row)
+			{	
+				$this->db->or_where('qid',$row);
+			}
+			$result = $this->db->get()->result();
+			return $result;
+			// print_r('<pre>');
+			// var_dump($result);
+		}
+
 		// public function delete_question($qid)
 		// {
 		// 	if(!$qid)

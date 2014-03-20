@@ -117,6 +117,13 @@ class Admin extends CI_Controller
 		$this->_render_page('admin/list_questions',$this->data);
 	}
 
+	public function list_quiz($listdata)
+	{
+		$this->data['title'] = 'Exam';
+		$this->data['list'] = json_encode($listdata);
+		$this->_render_page('exam/one_exam',$this->data);
+	}
+
 	public function search_question()
 	{
 		$this->data['title'] = 'Search Questions';

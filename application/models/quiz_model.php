@@ -73,7 +73,22 @@
 			}
 			$q_number = range(1,$count);
 			$quizid = random_element($q_number);
-			die();
+			
+			$this->db->where('quizid',$quizid);
+			$this->db->from('quiz_lib');
+			$query = $this->db->get();
+			$result = $query->result();
+
+			foreach($result[0] as $key => $value)
+			{
+				$tmp[$key] = $value;
+			}
+			$exam = array_slice($tmp,1,constant('quiz_number'));
+
+			// print_r('<pre>');
+			// print_r($tmp);
+			// die();
+			return $exam;
 		}
 	}
 ?>
