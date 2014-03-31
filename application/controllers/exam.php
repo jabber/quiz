@@ -64,6 +64,7 @@ class Exam extends CI_Controller
 				}
 			}
 			echo 'You score is:'.$score;
+			$this->quiz_model->add_quiz_result($score);
 		}
 		else
 		{

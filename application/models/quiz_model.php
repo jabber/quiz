@@ -31,6 +31,18 @@
 			$this->db->query($quest);
 		}
 
+		public function create_userscore_lib()
+		{
+			$quest = "
+				CREATE TABLE userscore_lib (
+				uid int(11) unsigned NOT NULL,
+				score int(11) unsigned NOT NULL,
+				time  varchar(30) NOT NULL
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+			";
+			$this->db->query($quest);
+		}
+
 		public function add_random_quiz()
 		{
 			$query = $this->db->query('select count(*) from question_lib');
@@ -43,7 +55,7 @@
 			shuffle($q_number);
 			$sequence = array_slice($q_number,0,constant('quiz_number'));
 			$quiz_data = array();
-			for($i = 0;$i<10;$i++)
+			for($i = 0;$i<constant('quiz_number');$i++)
 			{
 				$j = $i+1;
 				$str = 'question_'.$j;
@@ -89,6 +101,20 @@
 			// print_r($tmp);
 			// die();
 			return $exam;
+		}
+
+		public function add_quiz_result($score)
+		{
+			$data = array(
+				'uid' => '2',
+				'score' => $score,
+				'time' => date('Y-m-d H:i:s')
+				);
+			if( !$this->db->table_exists('userscore_lib') )
+			{
+				$this->create_userscore_lib();
+			}
+			$this->db->insert('userscore_lib',$data);
 		}
 	}
 ?>
