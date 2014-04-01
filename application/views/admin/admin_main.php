@@ -1,13 +1,8 @@
-<html>
-  <head>
-    <title>Bootstrap 101 Template</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
-    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
-  </head>
-<body>
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+$sPath =  dirname(dirname(__FILE__)). '/common/page_header.php';
+if($sPath) { require_once $sPath;}
+?>
 
     <div class="container">
 
@@ -101,3 +96,8 @@ body {
   }
 }
 </style>
+
+<?php
+$sPath =  dirname(dirname(__FILE__)) . '/common/page_footer.php';
+if($sPath) { require_once $sPath; }
+?>

@@ -65,9 +65,9 @@ class Auth extends CI_Controller {
 		{
 			//check to see if the user is logging in
 			//check for "remember me"
-			$remember = (bool) $this->input->post('remember');
+			//$remember = (bool) $this->input->post('remember');
 
-			if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember))
+			if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), true))
 			{
 				//if the login is successful
 				//redirect them back to the home page
@@ -78,7 +78,7 @@ class Auth extends CI_Controller {
 				}
 				else
 				{
-					redirect('/post', 'refresh');
+					redirect('/exam/one_exam', 'refresh');
 				}
 			}
 			else
@@ -119,7 +119,7 @@ class Auth extends CI_Controller {
 
 		//redirect them to the login page
 		$this->session->set_flashdata('message', $this->ion_auth->messages());
-		redirect('auth/login', 'refresh');
+		redirect('welcome', 'refresh');
 	}
 
 	//change password

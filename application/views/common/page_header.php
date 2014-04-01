@@ -22,6 +22,7 @@
 		</style>
 		<script src="<?php echo $this->config->base_url();?>assets/js/jquery.min.js"></script>
 		<script src="<?php echo $this->config->base_url();?>assets/js/jquery.redirect.js"></script>
+		<script src="<?php echo $this->config->base_url();?>assets/js/jquery.cookie.js"></script>
 	</head>
 	<body>
 		<div class="navbar navbar-default navbar-fixed-top">
@@ -40,11 +41,10 @@
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
-					<li><a href="<?php echo $this->config->base_url();?>auth/create_user" >注册</a></li>
-					<li><a href="<?php echo $this->config->base_url();?>auth/login" >登录</a></li>
+					<li id = 'register_li'><a href="<?php echo $this->config->base_url();?>auth/create_user" >注册</a></li>
+					<li id = 'user_btn'><a href="<?php echo $this->config->base_url();?>auth/login" >登录</a></li>
 					</ul>
 
 				</div>
 			</div>
 		</div>
-<?php

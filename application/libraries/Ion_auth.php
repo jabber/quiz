@@ -394,6 +394,10 @@ class Ion_auth
 		{
 			delete_cookie('remember_code');
 		}
+		if (get_cookie('quiz_cookie'))
+		{
+			delete_cookie('quiz_cookie');
+		}
 
 		//Destroy the session
 		$this->session->sess_destroy();

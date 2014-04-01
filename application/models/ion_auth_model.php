@@ -877,7 +877,7 @@ class Ion_auth_model extends CI_Model
 	 * @return bool
 	 * @author Mathew
 	 **/
-	public function login($identity, $password, $remember=FALSE)
+	public function login($identity, $password, $remember=true)
 	{
 		$this->trigger_events('pre_login');
 
@@ -1675,6 +1675,15 @@ class Ion_auth_model extends CI_Model
 			set_cookie(array(
 			    'name'   => 'remember_code',
 			    'value'  => $salt,
+			    'expire' => $expire
+			));
+			$quiz_cookie_arr = array(
+				'username' => $user->username,
+				'userid' => $user->id,
+			);
+			set_cookie(array(
+			    'name'   => 'quiz_cookie',
+			    'value'  => json_encode($quiz_cookie_arr),
 			    'expire' => $expire
 			));
 
