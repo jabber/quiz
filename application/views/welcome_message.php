@@ -190,7 +190,7 @@ if($sPath) { require_once $sPath; }
                 <p class="form-title">
                     Sign In</p>
                 <form class="login" action="<?php echo base_url();?>auth/login" method="post">
-	                <input id="identity" name="identity" type="text" placeholder="用户名" />
+	                <input id="identity" name="identity" type="text" placeholder="邮箱" />
 	                <input id="password" name="password" type="password" placeholder="密码" />
 	                <input type="submit" value="登录" class="btn btn-success btn-sm" />
 	                <div class="remember-forgot">

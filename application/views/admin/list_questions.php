@@ -1,10 +1,18 @@
-<script src="<?php echo $this->config->base_url();?>assets/js/jquery.min.js"></script>
-<script src="<?php echo $this->config->base_url();?>assets/js/jquery.redirect.js"></script>
-<div id = 'question_list'>
-	<table id = 'q_table'>
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+$sPath =  dirname(dirname(__FILE__)). '/common/page_header.php';
+if($sPath) { require_once $sPath;}
+?>
 
-	</table>
-<div>
+<div class = 'container'>
+	<div class = 'frame'>
+		<div id = 'question_list'>
+			<table id = 'q_table' class = 'table table-bordered'>
+
+			</table>
+		<div>
+	</div>
+</div>
 
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -12,14 +20,14 @@
 		for(i=0;i<listData.length;i++)
 		{
 			qid = listData[i]['qid'];
-			question = '<tr><td>'+listData[i]['question']+'</td></tr>';
+			question = '<tr class = "success"><td>'+listData[i]['question']+'</td></tr>';
 			ans_a = '<tr><td>'+listData[i]['answer_A']+'</td></tr>';
 			ans_b = '<tr><td>'+listData[i]['answer_B']+'</td></tr>';
 			ans_c = '<tr><td>'+listData[i]['answer_C']+'</td></tr>';
 			ans_d = '<tr><td>'+listData[i]['answer_D']+'</td></tr>';
-			corr_ans = '<tr><td>'+listData[i]['correct_answer']+'</td></tr><tr><td>';
+			corr_ans = '<tr class = "danger"><td>'+listData[i]['correct_answer']+'</td></tr><tr><td>';
 			//delete_btn = '<input type = "button" value = "delete" class = "delete_button" name = "delete_'+qid+'">';
-			edit_btn = '<input type ="button" value = "edit" class = "edit_button" name = "edit_'+qid+'"></td></tr>';
+			edit_btn = '<input type ="button" value = "编辑" class = "edit_button btn btn-primary" name = "edit_'+qid+'"></td></tr>';
 			blank = '<tr><td>&nbsp;</td></tr>';
 			$('#q_table').append(question+ans_a+ans_b+ans_c+ans_d+corr_ans+edit_btn+blank);
 		}
@@ -32,3 +40,21 @@
 
 	});
 </script>
+
+<style type="text/css">
+
+.frame
+{
+	margin: 5px;
+	padding: 20px;
+}
+
+td{
+	font-size: 18px;
+}
+</style>
+
+<?php
+$sPath =  dirname(dirname(__FILE__)) . '/common/page_footer.php';
+if($sPath) { require_once $sPath; }
+?>

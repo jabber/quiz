@@ -211,6 +211,12 @@ class Admin extends CI_Controller
 		$return_value = $this->quiz_model->add_random_quiz();
 		return $return_value;
 	}
+
+	public function admin_main()
+	{
+		$this->data['title'] = 'Admin Main';
+		$this->_render_page('admin/admin_main',$this->data);
+	}
 }
 
 ?>
