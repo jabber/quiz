@@ -6,9 +6,6 @@ if($sPath) { require_once $sPath;}
 
 <div class = 'container'>
 	<div class = 'frame'>
-		<div>
-			<p></p>
-		</div>
 		<div class = 'form-table'>
 			<form role = 'form' id = 'question_form' action = 'add_question' method = 'post'>
 				<div class = 'form-group'>
@@ -55,7 +52,7 @@ if($sPath) { require_once $sPath;}
 
 .frame
 {
-	margin: 10px;
+	margin: 30px;
 	border: 1px solid #c0c0c0;
 	padding: 20px;
 	background-color: #eeeeee;

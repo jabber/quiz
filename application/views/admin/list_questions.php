@@ -45,7 +45,7 @@ if($sPath) { require_once $sPath;}
 
 .frame
 {
-	margin: 5px;
+	margin: 10px;
 	padding: 20px;
 }
 

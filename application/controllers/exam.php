@@ -63,13 +63,15 @@ class Exam extends CI_Controller
 					$score++;
 				}
 			}
-			echo 'You score is:'.$score;
+			// echo 'You score is:'.$score;
+			$this->data['result'] = $score;
 			$this->quiz_model->add_quiz_result($score);
 		}
 		else
 		{
-			//error notice
+			$this->session->set_flashdata('message', 'Please answer all questions.');
 		}
+		$this->_render_page('exam/result',$this->data);
 	}
 }
 ?>

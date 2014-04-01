@@ -4,7 +4,6 @@ $sPath =  dirname(dirname(__FILE__)). '/common/page_header.php';
 if($sPath) { require_once $sPath;}
 ?>
 
-<script src="<?php echo $this->config->base_url();?>assets/js/jquery.min.js"></script>
 <div class = 'container'>
 	<div class = 'frame'>
 		<form method = 'post' action = 'add_quiz' role = 'form'>
@@ -80,7 +79,7 @@ p{
 
 .frame
 {
-	margin: 10px;
+	margin: 30px;
 	border: 1px solid #c0c0c0;
 	padding: 30px;
 	background-color: #eeeeee;

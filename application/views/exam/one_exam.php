@@ -12,6 +12,7 @@ if($sPath) { require_once $sPath;}
 			</table>
 			<input type = 'submit' value = '提 交' class = 'btn btn-primary'>
 		</form>
+		<p><?php echo $message?></p>
 	<div>
 </div>
 

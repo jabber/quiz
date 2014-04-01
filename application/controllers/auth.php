@@ -78,7 +78,7 @@ class Auth extends CI_Controller {
 				}
 				else
 				{
-					redirect('/exam/one_exam', 'refresh');
+					redirect('/user/info', 'refresh');
 				}
 			}
 			else

@@ -36,15 +36,21 @@
 					</button>
 				</div>
 				<div class="navbar-collapse collapse" id="navbar-main">
-					<ul class="nav navbar-nav">
 
-					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
 					<li id = 'register_li'><a href="<?php echo $this->config->base_url();?>auth/create_user" >注册</a></li>
 					<li id = 'user_btn'><a href="<?php echo $this->config->base_url();?>auth/login" >登录</a></li>
+					<li id = 'logout' class = 'hidden'><a href="<?php echo $this->config->base_url();?>auth/logout" >登出</a></li>
 					</ul>
 
+					<ul class="nav navbar-nav navbar-right">
+					<li id = 'add_ques' class = 'hidden'><a href = "<?php echo $this->config->base_url();?>admin/add_question">添加题目</a></li>
+					<li id = 'list_ques' class = 'hidden'><a href = "<?php echo $this->config->base_url();?>admin/list_questions">列出题目</a></li>
+					<li id = 'search_ques' class = 'hidden'><a href = "<?php echo $this->config->base_url();?>admin/search_question">查找题目</a></li>
+					<li id = 'add_quiz' class = 'hidden'><a href = "<?php echo $this->config->base_url();?>admin/add_quiz">添加试题</a></li>
+					<li id = 'score' class = 'hidden'><a href = "<?php echo $this->config->base_url();?>user/score">成绩</a></li>
+					</ul>
 				</div>
 			</div>
 		</div>

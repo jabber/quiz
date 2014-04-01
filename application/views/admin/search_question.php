@@ -21,7 +21,7 @@ if($sPath) { require_once $sPath;}
 <style type="text/css">
 .frame
 {
-	margin: 10px;
+	margin: 30px;
 	border: 1px solid #c0c0c0;
 	padding: 20px;
 	background-color: #eeeeee;
