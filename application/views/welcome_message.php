@@ -209,7 +209,7 @@ if($sPath) { require_once $sPath; }
     		<div class = 'intro'>
     			<div class = 'context'>
 	    			<h1>WELCOME to QUIZ<h3>
-					<h4>Test your englis level</h4>
+					<h4>Test your english level</h4>
 				</div>
     		</div>
     	</div>

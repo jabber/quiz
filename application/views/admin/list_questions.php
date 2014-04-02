@@ -24,10 +24,10 @@ if($sPath) { require_once $sPath;}
 		{
 			qid = listData[i]['qid'];
 			question = '<tr class = "success"><td>'+listData[i]['question']+'</td></tr>';
-			ans_a = '<tr><td>'+listData[i]['answer_A']+'</td></tr>';
-			ans_b = '<tr><td>'+listData[i]['answer_B']+'</td></tr>';
-			ans_c = '<tr><td>'+listData[i]['answer_C']+'</td></tr>';
-			ans_d = '<tr><td>'+listData[i]['answer_D']+'</td></tr>';
+			ans_a = '<tr><td>A. '+listData[i]['answer_A']+'</td></tr>';
+			ans_b = '<tr><td>B. '+listData[i]['answer_B']+'</td></tr>';
+			ans_c = '<tr><td>C. '+listData[i]['answer_C']+'</td></tr>';
+			ans_d = '<tr><td>D. '+listData[i]['answer_D']+'</td></tr>';
 			corr_ans = '<tr class = "danger"><td>'+listData[i]['correct_answer']+'</td></tr><tr><td>';
 			//delete_btn = '<input type = "button" value = "delete" class = "delete_button" name = "delete_'+qid+'">';
 			edit_btn = '<input type ="button" value = "编辑" class = "edit_button btn btn-primary" name = "edit_'+qid+'"></td></tr>';
