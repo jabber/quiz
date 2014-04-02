@@ -1,46 +1,95 @@
-<h1><?php echo lang('create_user_heading');?></h1>
-<p><?php echo lang('create_user_subheading');?></p>
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+$sPath =  dirname(dirname(__FILE__)). '/common/page_header.php';
+if($sPath) { require_once $sPath;}
+?>
 
-<div id="infoMessage"><?php echo $message;?></div>
+<div class = 'container'>
+      <div class="masthead">
+            <h1 class="text-muted"><?php echo lang('create_user_heading');?></h1>
+            <p class = 'text-muted'><?php echo lang('create_user_subheading');?></p>
+      </div>
+      <div class = 'frame'>
+            <div class = 'form-table'>
+                  <div id="infoMessage"><?php echo $message;?></div>
+                  <form role = 'form' action = 'create_user' method = 'post'>
+                        <div class = 'form-group'>
+                              <label for = 'first_name'>First Name</label>
+                              <input type = 'text' name = 'first_name' class = 'form-control'>
+                        </div>
+                        <div class = 'form-group'>
+                              <label for = 'last_name'>Last Name</label>
+                              <input type = 'text' name = 'last_name' class = 'form-control'>
+                        </div>
+                        <div class = 'form-group'>
+                              <label for = 'company'>Company</label>
+                              <input type = 'text' name = 'company' class = 'form-control'>
+                        </div>
+                        <div class = 'form-group'>
+                              <label for = 'email'>Email</label>
+                              <input type = 'text' name = 'email' class = 'form-control'>
+                        </div>
+                        <div class = 'form-group'>
+                              <label for = 'phone'>Phone</label>
+                              <input type = 'text' name = 'phone' class = 'form-control'>
+                        </div>
+                        <div class = 'form-group'>
+                              <label for = 'password'>Password</label>
+                              <input type = 'password' name = 'password' class = 'form-control'>
+                        </div>
+                        <div class = 'form-group'>
+                              <label for = 'password_confirm'>Confirm Password</label>
+                              <input type = 'password' name = 'password_confirm' class = 'form-control'>
+                        </div>
+                        <div class = 'form-group'>
+                              <input type = 'submit' value = 'Creat User' class = 'btn btn-success'>
+                        </div>
+                  </form>
+            </div>
+      </div>
+</div>
 
-<?php echo form_open("auth/create_user");?>
+<style type="text/css">
 
-      <p>
-            <?php echo lang('create_user_fname_label', 'first_name');?> <br />
-            <?php echo form_input($first_name);?>
-      </p>
+h1{
+      margin-left: 35px;
+      margin-top: 30px;
+}
 
-      <p>
-            <?php echo lang('create_user_lname_label', 'last_name');?> <br />
-            <?php echo form_input($last_name);?>
-      </p>
+.btn
+{
+      margin: 10px 10px 0px 0px;
+}
 
-      <p>
-            <?php echo lang('create_user_company_label', 'company');?> <br />
-            <?php echo form_input($company);?>
-      </p>
+.frame
+{
+      width:800px;
+      margin: 30px;
+      border: 1px solid #c0c0c0;
+      padding: 20px;
+      background-color: #eeeeee;
+}
 
-      <p>
-            <?php echo lang('create_user_email_label', 'email');?> <br />
-            <?php echo form_input($email);?>
-      </p>
+label{
+      width: 100%;
+      font-size: 16px;
+      font-family: Arial;
+      font-weight: 500;
+      padding: 5px;
+}
 
-      <p>
-            <?php echo lang('create_user_phone_label', 'phone');?> <br />
-            <?php echo form_input($phone);?>
-      </p>
-
-      <p>
-            <?php echo lang('create_user_password_label', 'password');?> <br />
-            <?php echo form_input($password);?>
-      </p>
-
-      <p>
-            <?php echo lang('create_user_password_confirm_label', 'password_confirm');?> <br />
-            <?php echo form_input($password_confirm);?>
-      </p>
+p{
+      margin-left: 35px;
+      width: 100%;
+      font-size: 16px;
+      font-family: Arial;
+      font-weight: 500;
+      /*padding: 5px;*/
+}
+</style>
 
 
-      <p><?php echo form_submit('submit', lang('create_user_submit_btn'));?></p>
-
-<?php echo form_close();?>
+<?php
+$sPath =  dirname(dirname(__FILE__)) . '/common/page_footer.php';
+if($sPath) { require_once $sPath; }
+?>

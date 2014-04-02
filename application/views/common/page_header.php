@@ -48,7 +48,7 @@
 					<li id = 'add_ques' class = 'hidden'><a href = "<?php echo $this->config->base_url();?>admin/add_question">添加题目</a></li>
 					<li id = 'list_ques' class = 'hidden'><a href = "<?php echo $this->config->base_url();?>admin/list_questions">列出题目</a></li>
 					<li id = 'search_ques' class = 'hidden'><a href = "<?php echo $this->config->base_url();?>admin/search_question">查找题目</a></li>
-					<li id = 'add_quiz' class = 'hidden'><a href = "<?php echo $this->config->base_url();?>admin/add_quiz">添加试题</a></li>
+					<li id = 'add_quiz' class = 'hidden'><a href = "<?php echo $this->config->base_url();?>admin/add_quiz">生成试题</a></li>
 					<li id = 'score' class = 'hidden'><a href = "<?php echo $this->config->base_url();?>user/score">成绩</a></li>
 					</ul>
 				</div>

@@ -98,7 +98,7 @@
 			$exam = array_slice($tmp,1,constant('quiz_number'));
 
 			// print_r('<pre>');
-			// print_r($tmp);
+			// print_r($exam);
 			// die();
 			return $exam;
 		}

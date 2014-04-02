@@ -6,9 +6,11 @@ class Admin extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->library('form_validation');
+		$this->load->library('session');
 		$this->load->database();
 		$this->load->model('question_model');
 		$this->load->model('quiz_model');
+		$this->load->helper('url');
 	}
 
 	function _render_page($view, $data=null, $render=false)
@@ -45,6 +47,12 @@ class Admin extends CI_Controller
 				$this->question_model->create_question_lib();
 			}
 			$this->question_model->add_question($question_data);
+			$this->session->set_flashdata('message','添加成功');
+			redirect('/admin/add_question','refresh');
+		}
+		else
+		{
+			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 		}
 		$this->_render_page('admin/add_question',$this->data);
 	}
@@ -92,10 +100,14 @@ class Admin extends CI_Controller
 					'correct_answer' => $this->input->post('correct_answer')
 					);
 				$this->question_model->update_question($question_data,$qid);
+				redirect('admin/search_question','refresh');
 			}
-			//提示更新成功并跳转到管理页面
+			else
+			{
+				$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+			}
 		}
-			$this->_render_page('admin/update_question',$this->data);
+		$this->_render_page('admin/update_question',$this->data);
 	}
 
 	public function list_questions($listdata=null)
@@ -121,6 +133,7 @@ class Admin extends CI_Controller
 	{
 		$this->data['title'] = 'Exam';
 		$this->data['list'] = json_encode($listdata);
+		$this->data['message'] = $this->session->flashdata('message');
 		$this->_render_page('exam/one_exam',$this->data);
 	}
 
@@ -197,11 +210,17 @@ class Admin extends CI_Controller
 				if(!$error)
 				{
 					$this->quiz_model->add_quiz($quiz_data);
+					$this->session->set_flashdata('message','添加成功');
+					redirect('/admin/add_quiz','refresh');
 				}
 				else
 				{
 					//input qid > maximum qid, pop a error.
 				}
+		}
+		else
+		{
+			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 		}
 		$this->_render_page('admin/add_quiz',$this->data);
 	}
@@ -209,7 +228,8 @@ class Admin extends CI_Controller
 	public function add_random_quiz()
 	{
 		$return_value = $this->quiz_model->add_random_quiz();
-		return $return_value;
+		$this->session->set_flashdata('message','添加成功');
+		redirect('/admin/add_quiz','refresh');
 	}
 
 	public function admin_main()

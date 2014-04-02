@@ -5,6 +5,9 @@ if($sPath) { require_once $sPath;}
 ?>
 
 <div class = 'container'>
+	<div class="masthead">
+        <h3 class="text-muted">题目列表</h3>
+    </div>
 	<div class = 'frame'>
 		<div id = 'question_list'>
 			<table id = 'q_table' class = 'table table-bordered'>
@@ -42,6 +45,10 @@ if($sPath) { require_once $sPath;}
 </script>
 
 <style type="text/css">
+h3{
+	margin-left: 35px;
+	margin-top: 30px;
+}
 
 .frame
 {

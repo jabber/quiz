@@ -7,13 +7,19 @@ if($sPath) { require_once $sPath;}
     <div class="container">
 
       <div class="masthead">
-        <h3 class="text-muted">ADMIN SYSTEM</h3>
+        <h2 class="text-muted">WELCOME TO ADMIN SYSTEM</h2>
         
       </div>
 
       
     </div> <!-- /container -->
 
+
+<style type="text/css">
+h2{
+	margin-top: 40px;
+}
+</style>
 
 
 <?php

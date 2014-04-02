@@ -31,6 +31,7 @@
 					}
 					$('li#register_li').addClass('hidden');
 
+					$('#welcomepage').addClass('hidden');
 				}
 			});
 

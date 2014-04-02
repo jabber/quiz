@@ -5,7 +5,13 @@ if($sPath) { require_once $sPath;}
 ?>
 
 <div class = 'container'>
+	 <div class="masthead">
+        <h3 class="text-muted">添加题目</h3>
+      </div>
 	<div class = 'frame'>
+		<div>
+			<p><?php echo $message?></p>
+		</div>
 		<div class = 'form-table'>
 			<form role = 'form' id = 'question_form' action = 'add_question' method = 'post'>
 				<div class = 'form-group'>
@@ -36,7 +42,7 @@ if($sPath) { require_once $sPath;}
 					<input type = 'radio' name = 'correct_answer' id = 'radio_d' value = 'D'>D
 				</div>
 				<div class = 'form-group'>
-					<input type = 'submit' value = '提 交' class = 'btn btn-primary'>
+					<input type = 'submit' value = '提 交' class = 'btn btn-primary' >
 					<input type = 'button' value = '清 除' class = 'btn btn-danger' id = 'clear'>
 				</div>
 			</form>
@@ -44,7 +50,22 @@ if($sPath) { require_once $sPath;}
 	</div>
 </div>
 
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#clear').click(function(){
+			$('.form-control').val('');
+			$('input[type = "radio"').removeAttr('checked');
+		});
+	});
+</script>
+
+
 <style type="text/css">
+h3{
+	margin-left: 35px;
+	margin-top: 30px;
+}
+
 .btn
 {
 	margin: 10px 10px 0px 0px;

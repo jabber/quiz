@@ -5,6 +5,9 @@ if($sPath) { require_once $sPath;}
 ?>
 
 <div class = 'container'>
+	<div class="masthead">
+        <h3 class="text-muted">查  找</h3>
+    </div>
 	<div class = 'frame'>
 		<form method = 'post' action = 'search_question' role = 'form'>
 			<div class = 'form-group'>
@@ -19,6 +22,11 @@ if($sPath) { require_once $sPath;}
 </div>
 
 <style type="text/css">
+h3{
+	margin-left: 35px;
+	margin-top: 30px;
+}
+
 .frame
 {
 	margin: 30px;

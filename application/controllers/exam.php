@@ -9,6 +9,7 @@ class Exam extends CI_Controller
 		parent::__construct();
 		$this->load->database();
 		$this->load->library('form_validation');
+		$this->load->library('session');
 		$this->load->model('question_model');
 		$this->load->model('quiz_model');
 		$this->admin = new admin();
@@ -23,9 +24,8 @@ class Exam extends CI_Controller
 
 	public function one_exam()
 	{
-		$this->data['title'] = 'Exam';
-
 		$qid_array = $this->quiz_model->create_exam();
+
 		if($qid_array)
 		{
 			$result = $this->question_model->search_question_withqid($qid_array);
@@ -66,12 +66,14 @@ class Exam extends CI_Controller
 			// echo 'You score is:'.$score;
 			$this->data['result'] = $score;
 			$this->quiz_model->add_quiz_result($score);
+			$this->_render_page('exam/result',$this->data);
 		}
 		else
 		{
-			$this->session->set_flashdata('message', 'Please answer all questions.');
+			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+			redirect('exam/one_exam','refresh');
 		}
-		$this->_render_page('exam/result',$this->data);
+		
 	}
 }
 ?>

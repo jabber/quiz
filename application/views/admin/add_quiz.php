@@ -5,7 +5,13 @@ if($sPath) { require_once $sPath;}
 ?>
 
 <div class = 'container'>
+	<div class="masthead">
+        <h3 class="text-muted">添加试题</h3>
+    </div>
 	<div class = 'frame'>
+		<div>
+			<p><?php echo $message?></p>
+		</div>
 		<form method = 'post' action = 'add_quiz' role = 'form'>
 		<div class = 'form-group'>
 			<label for = 'q1'>Please input the qid of question 1</label>
@@ -48,14 +54,27 @@ if($sPath) { require_once $sPath;}
 			<input type = 'text' name = 'q10' class = 'form-control'>
 		</div>
 		<div class = 'form-group'->
-			<input type = 'submit' value = '提   交' class = 'btn btn-primary'>
-			<input type = 'button' value = '随机生成' id = 'rndQuiz' class = 'btn btn-success'>
+			<input type = 'submit' value = '提   交' class = 'btn btn-primary' id = 'ok'>
 		</div>
+		</form>
+		<form method = 'post' action = 'add_random_quiz' role = 'form'>
+			<input type = 'submit' value = '随机生成' id = 'rndQuiz' class = 'btn btn-success'>
 		</form>
 	</div>
 </div>
 
+
 <style type="text/css">
+
+#ok{
+	width: 118px;
+}
+
+h3{
+	margin-left: 35px;
+	margin-top: 30px;
+}
+
 .btn
 {
 	margin: 10px 10px 0px 0px;
@@ -86,14 +105,6 @@ p{
 }
 
 </style>
-
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('#rndQuiz').click(function(){
-			$.post('add_random_quiz');
-		});
-	});
-</script>
 
 <?php
 $sPath =  dirname(dirname(__FILE__)) . '/common/page_footer.php';

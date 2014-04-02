@@ -3,12 +3,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $sPath =  dirname(__FILE__) . '/common/page_header.php';
 if($sPath) { require_once $sPath; }
 ?>
+
 <style>
 	body{
-		background: url('assets/img/cover.jpg') fixed;
+		background: url('assets/img/cover_blur.jpg') fixed;
 	    background-size: cover;
 	    padding: 0;
 	    margin: 0;
+	}
+
+	#body{
+		margin-top: 80px;
 	}
 
 	.wrap
@@ -32,6 +37,7 @@ if($sPath) { require_once $sPath; }
 	    margin-top: 5%;
 	    text-transform: uppercase;
 	    letter-spacing: 4px;
+	    margin-top: 60px;
 	}
 
 	form
@@ -126,7 +132,7 @@ if($sPath) { require_once $sPath; }
 	    margin: 0 auto;
 	    width: 250px;
 	    position: relative;
-	    margin-top: 22%;
+	    margin-top: 45%;
 	    z-index: 999;
 	    background: #FFFFFF;
 	    padding: 20px 15px;
@@ -174,10 +180,40 @@ if($sPath) { require_once $sPath; }
 	{
 	    transition: background-color 0.5s ease;
 	}
+
+	.intro{
+		margin-top: 20px;
+		width: 550px;
+		height: 600px;
+		background-color: #222222;
+		background: rgba(30,30,30,0.65);
+	    border-radius: 10px; color: #FFFFFF;
+	}
+	.context{
+		padding: 15px;
+		margin-left: 20px;
+		font-family: 'Open Sans' , sans-serif;
+	    font-size: 18px;
+	    text-transform: uppercase;
+	    letter-spacing: 4px;
+	}
+	h4{
+		margin-top: 50px;
+	}
+
 </style>
-<div class="container">
+
+<div class="container" id = 'body'>
     <div class="row">
-        <div class="col-md-12">
+    	<div class = 'col-md-6'>
+    		<div class = 'intro'>
+    			<div class = 'context'>
+	    			<h1>WELCOME to QUIZ<h3>
+					<h4>Test your englis level</h4>
+				</div>
+    		</div>
+    	</div>
+        <div class="col-md-6">
             <div class="pr-wrap">
                 <div class="pass-reset">
                     <label>
@@ -213,10 +249,13 @@ if($sPath) { require_once $sPath; }
         </div>
     </div>
 </div>
+
+
 <?php
 $sPath =  dirname(__FILE__) . '/common/page_footer.php';
 if($sPath) { require_once $sPath; }
 ?>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.forgot-pass').click(function(event) {
