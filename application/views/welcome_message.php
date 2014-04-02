@@ -213,7 +213,7 @@ if($sPath) { require_once $sPath; }
 				</div>
     		</div>
     	</div>
-        <div class="col-md-6">
+        <div class="col-md-6" id = 'welcomepage'>
             <div class="pr-wrap">
                 <div class="pass-reset">
                     <label>
