@@ -29,6 +29,7 @@ h3{
 
 .frame
 {
+	width: 500px;
 	margin: 30px;
 	border: 1px solid #c0c0c0;
 	padding: 20px;

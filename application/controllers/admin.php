@@ -11,6 +11,7 @@ class Admin extends CI_Controller
 		$this->load->model('question_model');
 		$this->load->model('quiz_model');
 		$this->load->helper('url');
+		$this->load->helper('cookie');
 	}
 
 	function _render_page($view, $data=null, $render=false)
@@ -132,7 +133,21 @@ class Admin extends CI_Controller
 	public function list_quiz($listdata)
 	{
 		$this->data['title'] = 'Exam';
-		$this->data['list'] = json_encode($listdata);
+		$complete = get_cookie('exam_complete');
+		if(!$complete)
+		{
+			if(!get_cookie('exam_cookie'))
+			{
+				$this->data['list'] = json_encode($listdata);
+				$cookie = array(
+					'name' => 'exam_cookie',
+					'value' => $this->data['list'],
+					'expire' => 60*60*24
+					);
+				$this->input->set_cookie($cookie);
+			}
+		}
+
 		$this->data['message'] = $this->session->flashdata('message');
 		$this->_render_page('exam/one_exam',$this->data);
 	}

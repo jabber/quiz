@@ -16,7 +16,7 @@ if($sPath) { require_once $sPath;}
 	</div>
 	<div>
 		<form role = 'form' action = '<?php echo $this->config->base_url();?>exam/one_exam' method = 'post'>
-			<input type = 'submit' class = 'btn btn-success' value = '开始测验'>
+			<input type = 'submit' class = 'btn btn-success' value = '开始测验' id = 'start_exam'>
 		</form>
 	</div>
 </div>
@@ -36,6 +36,19 @@ if($sPath) { require_once $sPath;}
 		phone_str = '<tr><td>Phone</td><td>'+phone+'</td></tr>';
 		company_str = '<tr><td>Company</td><td>'+company+'</td></tr>';
 		$('#info-table').append(lastname_str+firstname_str+email_str+phone_str+company_str);
+
+		$('form').submit(function(){
+			if(!$.cookie('exam_complete'))
+			{
+				$.cookie('exam_complete',0,{expires:7,path:'/'});
+			}
+			else
+			{
+				$.cookie('exam_complete',null);
+				$.cookie('exam_complete',0,{expires:7,path:'/'});
+			}
+		});
+
 	});
 </script>
 

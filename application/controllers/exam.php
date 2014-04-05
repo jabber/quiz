@@ -50,28 +50,38 @@ class Exam extends CI_Controller
 			$str2 = 'Question'.$i;
 			$this->form_validation->set_rules($str1,$str2,'required');
 		}
-
-		if($this->form_validation->run() == TRUE)
+		if(!get_cookie('exam_complete'))
 		{
-			$score = 0;
-			for($i=1;$i<=constant('quiz_number');$i++)
+			if($this->form_validation->run() == TRUE)
 			{
-				$qStr = 'q'.$i;
-				$ansStr = 'ans'.$i;
-				if($this->input->post($qStr) == $this->input->post($ansStr))
+				$score = 0;
+				for($i=1;$i<=constant('quiz_number');$i++)
 				{
-					$score++;
+					$qStr = 'q'.$i;
+					$ansStr = 'ans'.$i;
+					if($this->input->post($qStr) == $this->input->post($ansStr))
+					{
+						$score++;
+					}
 				}
+				// echo 'You score is:'.$score;
+				$this->data['result'] = $score;
+				$this->quiz_model->add_quiz_result($score);
+				$this->_render_page('exam/result',$this->data);
+				delete_cookie('exam_cookie');
+				$cookie = array(
+					'name' => 'exam_complete',
+					'value' => 1,
+					'expire' => 60*60*24,
+					'path' => '/'
+					);
+				set_cookie($cookie);
 			}
-			// echo 'You score is:'.$score;
-			$this->data['result'] = $score;
-			$this->quiz_model->add_quiz_result($score);
-			$this->_render_page('exam/result',$this->data);
-		}
-		else
-		{
-			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-			redirect('exam/one_exam','refresh');
+			else
+			{
+				$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+				redirect('exam/one_exam','refresh');
+			}
 		}
 		
 	}
