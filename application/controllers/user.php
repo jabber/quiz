@@ -7,7 +7,9 @@ class User extends CI_Controller
 		parent::__construct();
 		$this->load->database();
 		$this->load->helper('cookie');
+		$this->load->helper('url');
 		$this->load->model('user_model');
+		$this->load->library('form_validation');
 	}
 
 	function _render_page($view, $data=null, $render=false)
@@ -32,6 +34,47 @@ class User extends CI_Controller
 		$this->data['info'] = json_encode($info);
 
 		$this->_render_page('user/info',$this->data);
+	}
+
+	public function edit_info()
+	{
+		$this->data['title'] = 'Edit Userinfo';
+		$id = $this->input->post('id');
+		$this->db->where('id',$id);
+		$this->db->from('users');
+		$result = $this->db->get()->result();
+
+		$fieldArray = array();
+		foreach ($result[0] as $key => $value) {
+			$fieldArray[$key] = $value;
+		}
+		$this->data['id'] = $fieldArray['id'];
+		$this->data['lastname'] = $fieldArray['last_name'];
+		$this->data['firstname'] = $fieldArray['first_name'];
+		$this->data['email'] = $fieldArray['email'];
+		$this->data['phone'] = $fieldArray['phone'];
+		$this->data['company'] = $fieldArray['company'];		
+
+		$this->form_validation->set_rules('lastname','Lastname','required');
+		$this->form_validation->set_rules('firstname','Firstname','required');
+		$this->form_validation->set_rules('email','Email','required');
+		$this->form_validation->set_rules('phone','Phone','required');
+		$this->form_validation->set_rules('company','Company','required');
+		
+		if($this->form_validation->run() == TRUE)
+		{
+			$user_info = array(
+				'id' => $this->input->post('id'),
+				'last_name' => $this->input->post('lastname'),
+				'first_name' => $this->input->post('firstname'),
+				'email' => $this->input->post('email'),
+				'phone' => $this->input->post('phone'),
+				'company' => $this->input->post('company')
+				);
+			$this->user_model->update_info($user_info,$id);
+			redirect('user/info','refresh');
+		}
+		$this->_render_page('user/edit_info',$this->data);
 	}
 
 	public function score()

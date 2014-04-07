@@ -16,10 +16,16 @@
 		public function get_info($uid)
 		{
 			$this->db->where('id',$uid);
-			$this->db->select('email,first_name,last_name,company,phone');
+			$this->db->select('id,email,first_name,last_name,company,phone');
 			$result = $this->db->get('users')->result();
 
 			return $result;
+		}
+
+		public function update_info($user_info,$id)
+		{
+			$this->db->where('id',$id);
+			$this->db->update('users',$user_info);
 		}
 	}
 

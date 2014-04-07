@@ -15,8 +15,9 @@ if($sPath) { require_once $sPath;}
 		</table>
 	</div>
 	<div>
-		<form role = 'form' action = '<?php echo $this->config->base_url();?>exam/one_exam' method = 'post'>
+		<form role = 'form' action = '<?php echo $this->config->base_url();?>exam/one_exam' method = 'post' id = 'exam'>
 			<input type = 'submit' class = 'btn btn-success' value = '开始测验' id = 'start_exam'>
+			<input type = 'button' class = 'btn btn-primary' value = '编辑信息' id = 'edit_info'>
 		</form>
 	</div>
 </div>
@@ -37,7 +38,7 @@ if($sPath) { require_once $sPath;}
 		company_str = '<tr><td>Company</td><td>'+company+'</td></tr>';
 		$('#info-table').append(lastname_str+firstname_str+email_str+phone_str+company_str);
 
-		$('form').submit(function(){
+		$('form#exam').submit(function(){
 			if(!$.cookie('exam_complete'))
 			{
 				$.cookie('exam_complete',0,{expires:7,path:'/'});
@@ -47,6 +48,10 @@ if($sPath) { require_once $sPath;}
 				$.cookie('exam_complete',null);
 				$.cookie('exam_complete',0,{expires:7,path:'/'});
 			}
+		});
+
+		$('#edit_info').click(function(){
+			$(this).redirect('edit_info',{id:info[0]['id']});
 		});
 
 	});
