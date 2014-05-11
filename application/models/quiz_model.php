@@ -7,6 +7,7 @@
 		{
 			$this->load->database();
 			$this->load->helper('array');
+			$this->load->helper('cookie');
 		}
 
 		public function create_quiz_lib()
@@ -103,10 +104,10 @@
 			return $exam;
 		}
 
-		public function add_quiz_result($score)
+		public function add_quiz_result($score,$uid)
 		{
 			$data = array(
-				'uid' => '2',
+				'uid' => $uid,
 				'score' => $score,
 				'time' => date('Y-m-d H:i:s')
 				);

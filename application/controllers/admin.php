@@ -12,6 +12,9 @@ class Admin extends CI_Controller
 		$this->load->model('quiz_model');
 		$this->load->helper('url');
 		$this->load->helper('cookie');
+		$this->load->model('ion_auth_model');
+		$this->load->library('ion_auth');
+		$this->lang->load('ion_auth');
 	}
 
 	function _render_page($view, $data=null, $render=false)
@@ -24,6 +27,11 @@ class Admin extends CI_Controller
 
 	public function add_question()
 	{
+		if (!$this->ion_auth->is_admin())
+		{
+			//redirect them to the home page because they must be an administrator to view this
+			show_404();
+		}
 		$this->data['title'] = 'Add Question';
 
 		$this->form_validation->set_rules('question','Question','required');
@@ -60,6 +68,11 @@ class Admin extends CI_Controller
 
 	public function update_question($qid = null)
 	{
+		if (!$this->ion_auth->is_admin())
+		{
+			//redirect them to the home page because they must be an administrator to view this
+			show_404();
+		}
 		$this->data['title'] = 'Update Question';
 		$this->data['qid'] = $this->input->post('qid');
 		$qid = $this->data['qid'];
@@ -113,6 +126,11 @@ class Admin extends CI_Controller
 
 	public function list_questions($listdata=null)
 	{
+		if (!$this->ion_auth->is_admin())
+		{
+			//redirect them to the home page because they must be an administrator to view this
+			show_404();
+		}
 		$this->data['title'] = 'List Questions';
 		if(!$listdata)
 		{
@@ -154,6 +172,11 @@ class Admin extends CI_Controller
 
 	public function search_question()
 	{
+		if (!$this->ion_auth->is_admin())
+		{
+			//redirect them to the home page because they must be an administrator to view this
+			show_404();
+		}
 		$this->data['title'] = 'Search Questions';
 
 		$this->form_validation->set_rules('keywords','Keywords','required');
@@ -173,6 +196,11 @@ class Admin extends CI_Controller
 
 	public function add_quiz()
 	{
+		if (!$this->ion_auth->is_admin())
+		{
+			//redirect them to the home page because they must be an administrator to view this
+			show_404();
+		}
 		$this->data['title'] = 'Add Quiz';
 
 		if( !$this->db->table_exists('quiz_lib') )
@@ -242,6 +270,12 @@ class Admin extends CI_Controller
 
 	public function add_random_quiz()
 	{
+
+		if (!$this->ion_auth->is_admin())
+		{
+			//redirect them to the home page because they must be an administrator to view this
+			show_404();
+		}
 		$return_value = $this->quiz_model->add_random_quiz();
 		$this->session->set_flashdata('message','添加成功');
 		redirect('/admin/add_quiz','refresh');
@@ -250,6 +284,11 @@ class Admin extends CI_Controller
 	public function admin_main()
 	{
 		$this->data['title'] = 'Admin Main';
+		if (!$this->ion_auth->is_admin())
+		{
+			//redirect them to the home page because they must be an administrator to view this
+			show_404();
+		}
 		$this->_render_page('admin/admin_main',$this->data);
 	}
 }
