@@ -25,6 +25,9 @@ if($sPath) { require_once $sPath;}
 				var exam_cookie_obj = jQuery.parseJSON($.cookie('exam_cookie'));
 				var listData = exam_cookie_obj;
 
+				var quiz_cookie_obj = jQuery.parseJSON($.cookie('quiz_cookie'));
+				var userid = quiz_cookie_obj['userid'];
+
 				for(i=0;i<listData.length;i++)
 				{
 					j=i+1;
@@ -39,6 +42,8 @@ if($sPath) { require_once $sPath;}
 					hidden_ans = '<tr><td><input type = "hidden" name = "ans'+j+'" value = "'+correct_answer+'"</td></tr>';
 					$('#exam_table').append(question+ans_a+ans_b+ans_c+ans_d+ans+hidden_ans);
 				}
+				hidden_userid = '<tr><td><input type = "hidden" name = "userid" value = "'+userid+'"</td></tr>';
+				$('#exam_table').append(hidden_userid);
 			}
 		}
 		else

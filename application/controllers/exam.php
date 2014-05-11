@@ -66,7 +66,8 @@ class Exam extends CI_Controller
 				}
 				// echo 'You score is:'.$score;
 				$this->data['result'] = $score;
-				$this->quiz_model->add_quiz_result($score);
+				$userid = $this->input->post('userid');
+				$this->quiz_model->add_quiz_result($score,$userid);
 				$this->_render_page('exam/result',$this->data);
 				delete_cookie('exam_cookie');
 				$cookie = array(

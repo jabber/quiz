@@ -92,5 +92,6 @@ class User extends CI_Controller
 
 		$this->_render_page('user/score',$this->data);
 	}
+
 }
 ?>
